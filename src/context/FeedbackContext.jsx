@@ -51,7 +51,8 @@ export const FeedbackProvider = ({ children }) => {
         feedback: feedback,
         deleteFeedback: deleteFeedback,
         addFeedback: addFeedback,
-        editFeedback: editFeedback,
+        editFeedback: editFeedback, // function when we click on the edit icon
+        feedbackEdit: feedbackEdit, //piece of state that holds the item and boolean
       }}
     >
       {children}

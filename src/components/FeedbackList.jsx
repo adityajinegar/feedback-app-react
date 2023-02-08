@@ -4,6 +4,8 @@ import FeedbackItem from './FeedbackItem';
 import Spinner from './shared/Spinner';
 import FeedbackContext from '../context/FeedbackContext';
 
+// added layout prop for nicer animation
+
 function FeedbackList() {
   const { feedback, isLoading } = useContext(FeedbackContext);
 
@@ -12,9 +14,7 @@ function FeedbackList() {
   }
 
   return isLoading ? (
-    <h3>
-      <Spinner />
-    </h3>
+    <Spinner />
   ) : (
     <div className='feedback-list'>
       <AnimatePresence>
@@ -24,8 +24,9 @@ function FeedbackList() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            layout
           >
-            <FeedbackItem key={item.id} item={item}></FeedbackItem>
+            <FeedbackItem key={item.id} item={item} />
           </motion.div>
         ))}
       </AnimatePresence>

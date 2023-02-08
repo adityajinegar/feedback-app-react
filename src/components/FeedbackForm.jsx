@@ -21,18 +21,21 @@ function FeedbackForm() {
     }
   }, [feedbackEdit]);
 
-  const handleTextChange = (e) => {
-    if (text === '') {
+  // Get the value
+  const handleTextChange = ({ target: { value } }) => {
+    if (value === '') {
       setBtnDisabled(true);
       setMessage(null);
-    } else if (text !== '' && text.trim().length <= 10) {
+
+      // check for less than 10
+    } else if (value.trim().length <= 10) {
       setMessage('Text must be at least 10 characters');
       setBtnDisabled(true);
     } else {
       setMessage(null);
       setBtnDisabled(false);
     }
-    setText(e.target.value);
+    setText(value);
   };
 
   const handleSubmit = (e) => {
@@ -48,16 +51,19 @@ function FeedbackForm() {
       } else {
         addFeedback(newFeedback);
       }
-
+      // reset to default state after submission
+      setBtnDisabled(true);
+      setRating(10);
       setText('');
     }
   };
 
+  // pass selected to RatingSelect so we don't need local duplicate state
   return (
     <Card>
       <form onSubmit={handleSubmit}>
         <h2>How would you rate your service with us?</h2>
-        <RatingSelect select={(rating) => setRating(rating)} />
+        <RatingSelect select={setRating} selected={rating} />
         <div className='input-group'>
           <input
             onChange={handleTextChange}

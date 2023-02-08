@@ -56,9 +56,10 @@ export const FeedbackProvider = ({ children }) => {
 
     const data = await response.json();
 
-    setFeedback(
-      feedback.map((item) => (item.id === id ? { ...item, ...data } : item)),
-    );
+    setFeedback(feedback.map((item) => (item.id === id ? data : item)));
+
+    // FIX: this fixes being able to add a feedback after editing
+    setFeedbackEdit({ item: {}, edit: false });
   };
 
   // Set item to be updated
@@ -72,10 +73,10 @@ export const FeedbackProvider = ({ children }) => {
         feedback: feedback,
         feedbackEdit: feedbackEdit, //piece of state that holds the item and boolean
         isLoading: isLoading,
-        deleteFeedback: deleteFeedback,
-        addFeedback: addFeedback,
-        editFeedback: editFeedback, // function when we click on the edit icon
-        updateFeedback: updateFeedback,
+        deleteFeedback,
+        addFeedback,
+        editFeedback, // function when we click on the edit icon
+        updateFeedback,
       }}
     >
       {children}

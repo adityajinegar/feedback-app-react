@@ -1,7 +1,7 @@
 import Card from '../components/shared/Card';
 import { Link } from 'react-router-dom';
 
-function AboutPage() {
+function AboutPage(props) {
   return (
     <Card>
       <div className='about'>

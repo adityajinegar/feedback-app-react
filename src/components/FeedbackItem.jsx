@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import FeedbackContext from '../context/FeedbackContext';
 
 import Card from './shared/Card';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 function FeedbackItem({ item }) {
   const { deleteFeedback, editFeedback } = useContext(FeedbackContext);
